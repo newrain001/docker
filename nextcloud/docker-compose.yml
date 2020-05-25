@@ -1,0 +1,54 @@
+version: '3'
+services:
+  web:
+    hostname: web
+    image: nginx
+    ports:
+      - 80:80
+    networks:
+      - cloud_net
+    restart: always
+    volumes:
+      - ./nextcloud:/var/www/html
+      - ./nginx.conf:/etc/nginx/nginx.conf:ro
+      - ./onlyoffice-nextcloud-master:/var/www/html/apps/onlyoffice-nextcloud-master
+    depends_on:
+      - app
+
+  app:
+    hostname: app
+    image: newrain857/nextcloud:v1
+    restart: always
+    networks:
+      - cloud_net
+    volumes:
+      - ./nextcloud:/var/www/html
+      - ./onlyoffice-nextcloud-master:/var/www/html/apps/onlyoffice-nextcloud-master
+  db:
+    hostname: db
+    image: mariadb
+    restart: always
+    networks:
+      - cloud_net
+    volumes:
+      - ./db/data:/var/lib/mysql
+    command: --character-set-server=utf8
+    environment:
+      MYSQL_ROOT_PASSWORD: 123456
+      MYSQL_DATABASE: nextcloud
+      MYSQL_USER: nextcloud
+      MYSQL_PASSWORD: nextcloud123
+
+  onlyoffice:
+    hostname: onlyoffice
+    image: newrain857/onlyoffice:v1
+    restart: always
+    ports:
+      - 6060:80
+    networks:
+      - cloud_net
+
+networks:
+  cloud_net:
+
+
