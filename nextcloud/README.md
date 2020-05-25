@@ -315,16 +315,16 @@ http {
   下载完成后，进入已禁用的应用目录，刷新后，就可以看到onlyoffice，然后把它启用
   ```
 
-  ![image-20200417013231560](/image-20200417013231560.png)
+  [![tiKYid.png](https://s1.ax1x.com/2020/05/26/tiKYid.png)](https://imgchr.com/i/tiKYid)
 
 
 
 - 在设置页面中，找到onlyoffice 进行如下配置
-- ![image-20200417013513705](./image/image-20200417013513705.png)
+- ![tiKwsf.png](https://s1.ax1x.com/2020/05/26/tiKwsf.png)
 
-- ![image-20200417013532854](./image/image-20200417013532854.png)
+- [![tiKsoQ.png](https://s1.ax1x.com/2020/05/26/tiKsoQ.png)](https://imgchr.com/i/tiKsoQ)
 
-- ![image-20200417013552747](./image/image-20200417013552747.png)
+- ![tiK5eU.png](https://s1.ax1x.com/2020/05/26/tiK5eU.png)
 
 - ![image-20200417013614781](./image/image-20200417013614781.png)
 
