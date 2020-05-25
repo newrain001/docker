@@ -286,7 +286,7 @@ http {
 
   ![](https://i.loli.net/2020/04/17/H9yoOz4LZMKB38b.png)
 
-![image-20200417012517691](/image-20200417012517691.png)
+![tiMe0S.png](https://s1.ax1x.com/2020/05/26/tiMe0S.png)
 
 
 
@@ -326,7 +326,6 @@ http {
 
 - ![tiK5eU.png](https://s1.ax1x.com/2020/05/26/tiK5eU.png)
 
-- ![image-20200417013614781](./image/image-20200417013614781.png)
-
+- ![tiMEOf.png](https://s1.ax1x.com/2020/05/26/tiMEOf.png)
 
 
