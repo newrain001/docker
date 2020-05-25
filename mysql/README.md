@@ -16,3 +16,8 @@ docker inspect master |grep IPAddr
 docker run  --name slave -p 3307:3306 -e MYSQL_ROOT_PASSWORD="123456" -e MYSQL_MASTER_SERVICE_HOST="172.17.0.2" -e MYSQL_REPLICATION_USER='repl' -e MYSQL_REPLICATION_PASSWORD="123456"   -d imagename
 
 ```
+
+也可以采用docker-compose.yml进行创建
+```
+docker-compose up -d
+```

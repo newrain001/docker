@@ -1,0 +1,38 @@
+version: '3'
+services:
+  slave:
+    hostname: slave
+    image: newrain857/mysql5.7-ab:slave
+    ports:
+      - 3307:3306
+    networks:
+      test_net:
+        ipv4_address: 192.168.0.3
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: 123456
+      MYSQL_MASTER_SERVICE_HOST: 192.168.0.2
+      MYSQL_REPLICATION_USER: repl
+      MYSQL_REPLICATION_PASSWORD: 123456
+    depends_on:
+      - master
+
+  master:
+    user: root
+    hostname: master
+    image: newrain857/mysql5.7-ab:master
+    ports:
+      - 3306:3306
+    networks:
+      test_net:
+        ipv4_address: 192.168.0.2
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: 123456
+      MYSQL_REPLICATION_USER: repl
+      MYSQL_REPLICATION_PASSWORD: 123456
+networks:
+   test_net:
+      ipam:
+         config:
+         - subnet: 192.168.0.0/16
