@@ -1,0 +1,77 @@
+version: '3'
+services:
+  mariadb55:
+    container_name: mariadb
+    hostname: newrain857/zabbix-cluster:mariadb-5.5-v1
+    image: mariadb:5.5
+    networks:
+      zabbix_net:
+        ipv4_address: 192.168.0.2
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: 123456
+    volumes:
+      - ./server/mysql/data:/var/lib/mysql
+      - ./server/mysql/conf:/etc/mysql
+      - ./server/mysql/logs:/var/log/mysql
+
+  zabbix-server:
+    container_name: zabbix-server
+    hostname: zabbix-server
+    image: newrain857/zabbix-cluster:server-4.2-v1
+    networks:
+      zabbix_net:
+        ipv4_address: 192.168.0.3
+    restart: always
+    environment:
+      DB_SERVER_HOST: "192.168.0.2"
+      MYSQL_USER: "root"
+      MYSQL_PASSWORD: "123456"
+    volumes:
+      - ./server/script:/usr/lib/zabbix/alertscripts
+    depends_on:
+      - mariadb55
+
+
+  zabbix-web-nginx:
+    container_name: web-ui
+    hostname: zabbix-web-nginx
+    image: newrain857/zabbix-cluster:webui-4.2-v1
+    ports:
+      - 80:80
+      - 443:443
+    networks:
+      zabbix_net:
+        ipv4_address: 192.168.0.4
+    environment:
+      DB_SERVER_HOST: "192.168.0.2"
+      MYSQL_USER: "root"
+      MYSQL_PASSWORD: "123456"
+      ZBX_SERVER_HOST: "192.168.0.3"
+      PHP_TZ: "Asia/Shanghai"
+    volumes:
+      - ./server/nginx:/etc/nginx
+    depends_on:
+      - zabbix-server
+
+  zabbix-agent:
+    container_name: zabbix-agent
+    hostname: zabbix-agent
+    image: newrain857/zabbix-cluster:agent-4.2-v1
+    networks:
+      zabbix_net:
+        ipv4_address: 192.168.0.5
+    environment:
+      DB_SERVER_HOST: "192.168.0.2"
+      MYSQL_USER: "root"
+      MYSQL_PASSWORD: "123456"
+      ZBX_SERVER_HOST: "192.168.0.3"
+    depends_on:
+      - zabbix-server
+
+networks:
+   zabbix_net:
+      ipam:
+         config:
+         - subnet: 192.168.0.0/16
+
