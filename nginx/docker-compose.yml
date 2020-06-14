@@ -10,7 +10,6 @@ services:
     networks:
       test_net:
         ipv4_address: 192.168.0.10
-    restart: always
     volumes:
       - ./conf:/etc/nginx
       - ./application:/usr/share/nginx
