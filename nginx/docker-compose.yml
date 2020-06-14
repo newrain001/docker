@@ -13,6 +13,7 @@ services:
     restart: always
     volumes:
       - ./conf:/etc/nginx
+      - ./application:/usr/share/nginx
 networks:
    test_net:
       ipam:
