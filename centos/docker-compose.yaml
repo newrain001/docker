@@ -1,0 +1,14 @@
+version: '3'
+services:
+  centos:
+    hostname: centos
+    container_name: centos
+    image: daocloud.io/centos:7.6
+    networks:
+      test_net:
+        ipv4_address: 192.168.0.100
+networks:
+   test_net:
+      ipam:
+         config:
+         - subnet: 192.168.0.0/16
