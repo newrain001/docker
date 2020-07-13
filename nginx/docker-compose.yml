@@ -8,14 +8,14 @@ services:
       - 80:80
       - 443:443
     networks:
-      test_net:
-        ipv4_address: 192.168.0.10
+      nginx_net:
+        ipv4_address: 172.20.1.10
     volumes:
       - ./conf:/etc/nginx
       - ./application:/usr/share/nginx
 networks:
-   test_net:
+   nginx_net:
       ipam:
          config:
-         - subnet: 192.168.0.0/16
+         - subnet: 172.20.1.0/16
 
